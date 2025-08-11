@@ -1,4 +1,4 @@
-import { createServerClient() as createServerClient } from "../../supabase/server";
+import { createClient as createServerClient } from "../../supabase/server";
 import { Database } from "@/types/supabase";
 
 type Client = Database["public"]["Tables"]["clients"]["Row"];
