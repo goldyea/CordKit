@@ -1,4 +1,4 @@
-import { createClient } from "../../supabase/server";
+import { createServerClient() as createServerClient } from "../../supabase/server";
 import { Database } from "@/types/supabase";
 
 type Client = Database["public"]["Tables"]["clients"]["Row"];
@@ -21,7 +21,7 @@ type ProjectFileUpdate =
 
 // Client operations
 export async function getClients() {
-  const supabase = await createClient();
+  const supabase = await createServerClient();
   const { data, error } = await supabase
     .from("clients")
     .select("*")
@@ -32,7 +32,7 @@ export async function getClients() {
 }
 
 export async function getClientById(id: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient();
   const { data, error } = await supabase
     .from("clients")
     .select("*")
@@ -43,8 +43,8 @@ export async function getClientById(id: string) {
   return data;
 }
 
-export async function createClient(client: ClientInsert) {
-  const supabase = await createClient();
+export async function createServerClient()(client: ClientInsert) {
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("clients")
     .insert(client)
@@ -56,7 +56,7 @@ export async function createClient(client: ClientInsert) {
 }
 
 export async function updateClient(id: string, updates: ClientUpdate) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("clients")
     .update(updates)
@@ -69,7 +69,7 @@ export async function updateClient(id: string, updates: ClientUpdate) {
 }
 
 export async function deleteClient(id: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { error } = await supabase.from("clients").delete().eq("id", id);
 
   if (error) throw error;
@@ -77,7 +77,7 @@ export async function deleteClient(id: string) {
 
 // Project operations
 export async function getProjects() {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("projects")
     .select(
@@ -94,7 +94,7 @@ export async function getProjects() {
 }
 
 export async function getProjectsByClientId(clientId: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("projects")
     .select(
@@ -111,7 +111,7 @@ export async function getProjectsByClientId(clientId: string) {
 }
 
 export async function getProjectById(id: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("projects")
     .select(
@@ -129,7 +129,7 @@ export async function getProjectById(id: string) {
 }
 
 export async function createProject(project: ProjectInsert) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("projects")
     .insert(project)
@@ -141,7 +141,7 @@ export async function createProject(project: ProjectInsert) {
 }
 
 export async function updateProject(id: string, updates: ProjectUpdate) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("projects")
     .update(updates)
@@ -154,7 +154,7 @@ export async function updateProject(id: string, updates: ProjectUpdate) {
 }
 
 export async function deleteProject(id: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { error } = await supabase.from("projects").delete().eq("id", id);
 
   if (error) throw error;
@@ -162,7 +162,7 @@ export async function deleteProject(id: string) {
 
 // Template operations
 export async function getTemplates() {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("templates")
     .select("*")
@@ -173,7 +173,7 @@ export async function getTemplates() {
 }
 
 export async function getTemplateById(id: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("templates")
     .select("*")
@@ -185,7 +185,7 @@ export async function getTemplateById(id: string) {
 }
 
 export async function createTemplate(template: TemplateInsert) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("templates")
     .insert(template)
@@ -197,7 +197,7 @@ export async function createTemplate(template: TemplateInsert) {
 }
 
 export async function updateTemplate(id: string, updates: TemplateUpdate) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("templates")
     .update(updates)
@@ -210,7 +210,7 @@ export async function updateTemplate(id: string, updates: TemplateUpdate) {
 }
 
 export async function deleteTemplate(id: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { error } = await supabase.from("templates").delete().eq("id", id);
 
   if (error) throw error;
@@ -218,7 +218,7 @@ export async function deleteTemplate(id: string) {
 
 // Project files operations
 export async function getProjectFiles(projectId: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("project_files")
     .select("*")
@@ -230,7 +230,7 @@ export async function getProjectFiles(projectId: string) {
 }
 
 export async function saveProjectFile(projectFile: ProjectFileInsert) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("project_files")
     .upsert(projectFile, {
@@ -244,7 +244,7 @@ export async function saveProjectFile(projectFile: ProjectFileInsert) {
 }
 
 export async function deleteProjectFile(projectId: string, filePath: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { error } = await supabase
     .from("project_files")
     .delete()
@@ -256,7 +256,7 @@ export async function deleteProjectFile(projectId: string, filePath: string) {
 
 // Search and filter functions
 export async function searchClients(query: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("clients")
     .select("*")
@@ -268,7 +268,7 @@ export async function searchClients(query: string) {
 }
 
 export async function searchProjects(query: string) {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
   const { data, error } = await supabase
     .from("projects")
     .select(
@@ -286,7 +286,7 @@ export async function searchProjects(query: string) {
 }
 
 export async function getProjectStats() {
-  const supabase = await createClient();
+  const supabase = await createServerClient()();
 
   const [inProgressResult, completedResult, revisionsResult] =
     await Promise.all([
