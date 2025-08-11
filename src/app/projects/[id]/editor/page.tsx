@@ -113,7 +113,7 @@ export default function ProjectEditorPage() {
         {
           height: window.innerHeight - 50,
           openFile: "README.md",
-          view: "both",
+          view: "editor",
           hideNavigation: false,
           forceEmbedLayout: true,
           theme: "dark",

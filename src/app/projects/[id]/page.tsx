@@ -240,7 +240,7 @@ export default function ProjectDetailPage() {
               </div>
               <Button
                 size="sm"
-                className="text-vision-muted hover:text-white"
+                className="hover:text-white"
                 onClick={() => {
                   const signOutElement =
                     document.getElementById("signout-handler");
@@ -252,10 +252,10 @@ export default function ProjectDetailPage() {
                 <LogOut className="w-4 h-4 mr-2" />
                 Sign Out
               </Button>
-              <Button size="sm" className="text-vision-muted hover:text-white">
+              <Button size="sm" className="hover:text-white">
                 <Settings className="w-4 h-4" />
               </Button>
-              <Button size="sm" className="text-vision-muted hover:text-white">
+              <Button size="sm" className="hover:text-white">
                 <Bell className="w-4 h-4" />
               </Button>
             </div>

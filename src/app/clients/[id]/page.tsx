@@ -263,7 +263,7 @@ export default function ClientDetailPage() {
               </div>
               <Button
                 size="sm"
-                className="text-vision-muted hover:text-white"
+                className="hover:text-white"
                 onClick={() => {
                   const signOutElement =
                     document.getElementById("signout-handler");
